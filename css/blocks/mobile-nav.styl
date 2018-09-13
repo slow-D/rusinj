@@ -1,0 +1,52 @@
+.mobile-menu
+	margin 0px
+	padding-x 15px
+	padding-y 30px
+	position fixed
+	left 0px
+	top 0px
+	right 0px
+	bottom 53px
+	z-index 2000
+	display none
+	overflow-y scroll
+	background-color #fff
+	+above(sm)
+		bottom 0px
+		padding 30px
+	&__list
+		margin 0px
+		padding 0px
+	&__item
+		color $baseFontColor
+		padding 0px
+		margin 0px
+		>.link
+			display block
+			text-decoration none
+			padding-y 10px
+			margin 0px
+		&_active:not(&_header)
+			>.link
+				>span
+					position relative
+					display inline-block
+		&_header
+			font-size 125%
+			>.link
+				margin-bottom 5px
+	&__submenu
+		display none
+		margin 0px
+		padding 0px
+		padding-top 5px
+		position relative
+		z-index 0
+	&__close
+		cursor pointer
+		right 15px
+		top 15px
+		cross 1px #c4c4c4 28px 28px 28px 28px
+		position fixed
+	ul
+		list-style none

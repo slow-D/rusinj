@@ -1,0 +1,15 @@
+.owl-arrows
+    display flex
+    justify-content space-between
+    &__arrow
+        cursor pointer
+        arrow 1px black 30px 60px 'left'
+        +above(lg)
+            arrow 1px black 35px 70px 'left'
+        &_prev
+            margin-right 20px
+        &_next
+            transform rotate(180deg)
+        &.disabled
+            opacity 0.5
+            cursor default

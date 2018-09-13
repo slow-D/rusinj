@@ -1,0 +1,4 @@
+<% _.forEach(svg, function(svgItem) { %>
+    $svg<%=svgItem.name%>_width = <%= svgItem.relWidth %>
+    $svg<%=svgItem.name%>_height = <%= svgItem.relHeight %>
+<% }); %>

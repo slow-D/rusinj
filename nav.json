@@ -1,0 +1,124 @@
+[
+    {
+        "id": 1,
+        "link": "#1",
+        "active": true,
+        "span": true,
+        "current": true,
+        "mod": "",
+        "title": "Главная"
+    },{
+        "id": 2,
+        "link": "#2",
+        "active": false,
+        "span": false,
+        "current": false,
+        "mod": "",
+        "title": "Услуги",
+        "children": [
+            {
+                "id": 10,
+                "link": "#10",
+                "active": false,
+                "span": false,
+                "current": false,
+                "mod": "",
+                "title": "Услуга 1",
+                "children": [
+                    {
+                        "id": 23,
+                        "link": "#23",
+                        "active": false,
+                        "span": false,
+                        "current": false,
+                        "mod": "",
+                        "title": "Услуга 2"
+                    },{
+                        "id": 24,
+                        "link": "#24",
+                        "active": false,
+                        "span": false,
+                        "current": false,
+                        "mod": "",
+                        "title": "Услуга 3"
+                    }
+                ]
+            },{
+                "id": 11,
+                "link": "#11",
+                "active": false,
+                "span": false,
+                "current": false,
+                "mod": "",
+                "title": "Услуга 4"
+            },{
+                "id": 12,
+                "link": "#12",
+                "active": false,
+                "span": false,
+                "current": false,
+                "mod": "",
+                "title": "Услуга 5"
+            }
+        ]
+    },{
+        "id": 3,
+        "link": "#3",
+        "active": false,
+        "span": false,
+        "current": false,
+        "mod": "",
+        "title": "О компании",
+        "children": [
+            {
+                "id": 8,
+                "link": "#8",
+                "active": false,
+                "span": false,
+                "current": false,
+                "mod": "",
+                "title": "Сотрудничество"
+            },{
+                "id": 9,
+                "link": "#9",
+                "active": false,
+                "span": false,
+                "current": false,
+                "mod": "",
+                "title": "Отзывы"
+            }
+        ]
+    },{
+        "id": 4,
+        "link": "#4",
+        "active": false,
+        "span": false,
+        "current": false,
+        "mod": "",
+        "title": "Вопрос - ответ"
+    },{
+        "id": 5,
+        "link": "#5",
+        "active": false,
+        "span": false,
+        "current": false,
+        "mod": "",
+        "title": "Партнёры"
+    },{
+        "id": 6,
+        "link": "#6",
+        "active": false,
+        "span": false,
+        "current": false,
+        "mod": "",
+        "title": "Акции"
+    },{
+        "id": 7,
+        "link": "#7",
+        "active": false,
+        "span": false,
+        "current": false,
+        "mod": "",
+        "title": "Контакты"
+    }
+]

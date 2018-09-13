@@ -1,0 +1,6 @@
+<% _.forEach(svg, function(svgItem) { %>
+   .<%=common %>.<%=svgItem.name%> {
+         width: <%= svgItem.relWidth %>em;
+         height: <%= svgItem.relHeight %>em;
+     }
+<% }); %>

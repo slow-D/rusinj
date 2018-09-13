@@ -1,0 +1,37 @@
+.pagination
+    margin-y 30px
+    display flex
+    justify-content space-between
+    align-items center
+    +above(sm)
+        justify-content flex-start
+    &__main
+        display flex
+        align-items center
+        +above(sm)
+            margin-right 35px
+    &__input
+        display inline-block
+        vertical-align baseline
+        width 40px
+        margin-right 10px
+        input
+            text-align center
+            padding-x 5px
+    &__arrow
+        arrow 1px black 8px 16px 'left' 5px
+        cursor pointer
+        &_prev
+            margin-right 10px
+            +above(sm)
+                margin-right 15px
+        &_next
+            transform rotate(180deg)
+            margin-left 10px
+            +above(sm)
+                margin-left 15px
+        &_disabled
+            opacity 0.5
+            cursor default
+    &__pages
+        white-space nowrap

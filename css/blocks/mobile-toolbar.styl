@@ -1,0 +1,28 @@
+.mobile-toolbar
+	display flex
+	position fixed
+	left 0px
+	right 0px
+	bottom 0px
+	width 100%
+	height 53px
+	background #373737
+	margin 0px
+	padding 0px
+	z-index 2002
+	justify-content space-evenly
+	align-items center
+	+above(sm)
+		display none
+	&__item
+		margin 0px 25px
+		padding 0px
+		&:first-child
+			margin-left 15px
+		&:last-child
+			margin-right 15px
+	&__link
+		cursor pointer
+		display block
+		margin 0px
+		padding 0px

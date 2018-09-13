@@ -1,0 +1,601 @@
+aReset()
+    border 0
+    color inherit
+    text-decoration none
+    &:hover, &:focus
+        color inherit
+        text-decoration none
+        border none
+clearfix()
+    zoom 1
+    &:before
+    &:after
+        content ""
+        display table
+    &:after
+        clear both
+
+visible($size, $display = block)
+    display none !important
+    +at($size)
+        display $display !important
+
+hidden($size, $display = block)
+    display $display !important
+    +at($size)
+        display none !important
+        
+text($family, $weight = n, $size = n, $height = n, $color = n, $spacing = n)
+    if $family != n
+        font-family $family
+    if $size != n
+        font-size $size
+    if $weight != n
+        font-weight $weight
+    if $color != n
+        color $color
+    if $height != n
+        line-height $height
+    if $spacing != n
+        letter-spacing $spacing
+        
+text-hide()
+    font 0/0 a
+    color transparent
+    text-shadow none
+    background-color transparent
+    border 0
+    
+hover-area($top, $right = $top, $bottom = $top, $left = $right)
+    &::before
+        content ''
+        display block
+        position absolute
+        left -($left)
+        right -($right)
+        top -($top)
+        bottom -($bottom)
+        
+spriteWidth($sprite) {
+    width: $sprite[4];
+}
+
+spriteHeight($sprite) {
+    height: $sprite[5];
+}
+
+spritePosition($sprite) {
+    background-position: $sprite[2] $sprite[3];
+}
+
+spriteImage($sprite) {
+    background-image: url($sprite[8]);
+}
+
+sprite($sprite) {
+    spriteImage($sprite)
+    spritePosition($sprite)
+    spriteWidth($sprite)
+    spriteHeight($sprite)
+}
+
+sprites($sprites) {
+    for $sprite in $sprites {
+        $sprite_name = $sprite[9];
+        .{$sprite_name} {
+            sprite($sprite);
+        }
+    }
+}
+
+sprite-scale($sprite, $w...)
+    spriteImage($sprite)
+    if $w[0] != n
+        if $w == half
+            $scale = 0.5
+            $w = $sprite[4] / 2
+        $scale = $w[0] / $sprite[4]
+        background-size $scale*$spritesheet_width
+        background-position $sprite[2]*$scale $sprite[3]*$scale
+        width $w[0]
+        height $sprite[5] * $scale
+    if length($w) > 1
+        for i in (1..length($w) - 1)
+            if $w[i] != n
+                +above($scale-names[i])
+                    sprite-rescale $sprite $w[i]
+        
+    
+sprite-rescale($sprite, $w = full)
+    if $w != full
+        if $w == half
+            $w = $sprite[4] / 2
+        $scale = $w / $sprite[4]
+        background-size $scale*$spritesheet_width
+        background-position $sprite[2]*$scale $sprite[3]*$scale
+        width $w
+        height $sprite[5] * $scale
+    else
+        spritePosition($sprite)
+        spriteWidth($sprite)
+        spriteHeight($sprite)
+        background-size $spritesheet_width
+
+sprite-reimage($sprite)
+    spriteImage($sprite)
+    spritePosition($sprite)
+
+sprite-height($sprite, $w)
+    $scale = $w[0] / $sprite[4]
+    return $sprite[5] * $scale
+    
+sprite-font-size($size, $width)
+    font-size unit(round($size/$width), px)
+    
+a-reset()
+    text-decoration none
+    color inherit
+    border none
+    &:hover, &:focus
+        text-decoration none
+        color inherit
+        border none
+
+a1($weight, $type, $color, $borderColor = $color)
+    text-decoration none
+    display inline
+    color $color
+    border-bottom $weight $type $borderColor
+    &:hover, &:focus
+        color $color
+        border none
+        text-decoration none
+
+a2($weight, $type, $color, $borderColor = $color)
+    display inline
+    color $color
+    text-decoration none
+    border-bottom none
+    &:hover, &:focus
+        color $color
+        border-bottom $weight $type $borderColor
+        text-decoration none
+
+l()
+    list-style none
+    padding 0
+    margin 0
+
+li()
+    padding 0
+    margin 0
+    display block
+    &::before
+        content none
+
+pos($top = n, $right = n, $bottom = n, $left = n)
+    if $top != n
+        top $top
+    if $right != n
+        right $right
+    if $bottom != n
+        bottom $bottom
+    if $left != n
+        left $left
+    
+padding-x($left, $right = $left)
+    padding-left $left
+    padding-right $right
+padding-y($top, $bottom = $top)
+    padding-top $top
+    padding-bottom $bottom
+        
+margin-x($left, $right = $left)
+    margin-left $left
+    margin-right $right
+margin-y($top, $bottom = $top)
+    margin-top $top
+    margin-bottom $bottom
+
+col($gaps...)
+    min-height 1px
+    position relative
+    float left
+    if $gaps
+        set('padding-x', $gaps)
+
+cols(args...)
+    for arg, i in args
+        if arg != n
+            &_{i+1}
+                width arg
+                
+size($width, $height = $width)
+    width $width
+    height $height
+
+img($name)
+    background-image url($imgHref + $name)
+    $size = image-size($imgPath + $name)
+    size $size[0] $size[1]
+
+img-width($name)
+    $size = image-size($imgPath + $name)
+    return $size[0]
+
+img-height($name)
+    $size = image-size($imgPath + $name)
+    return $size[1]
+
+img-scale($name, $w...)
+    background-image url($imgHref + $name)
+    for i in (0..length($w) - 1)
+        if $w[i] != n
+            if i == 0
+                img-rescale $name $w[i]
+            else
+                +above($scale-names[i])
+                    img-rescale $name $w[i]
+
+img-rescale($name, $w = full)
+    $size = image-size($imgPath + $name)
+    if $w != full
+        $scale = $w / $size[0]
+        background-size $w
+        width $w
+        height $size[1] * $scale
+    else
+        background-size auto auto
+        size $size[0] $size[1]
+
+triangle(width = 10px, height = 10px, direction = 'bottom', color = #000)
+    width 0
+    height 0
+    background 0
+    border-style solid
+    directions = {
+        top: {
+            border-width: 0 (width * .5) height (width * .5),
+            border-color: transparent transparent color transparent
+        },
+        topRight: {
+            border-width: 0 width height 0,
+            border-color: transparent color transparent transparent
+        },
+        right: {
+            border-width: (height * .5) 0 (height *.5) width,
+            border-color: transparent transparent transparent color
+        },
+        bottomRight: {
+            border-width: 0 0 height width,
+            border-color: transparent transparent color transparent
+        },
+        bottom: {
+            border-width: height (width * .5) 0 (width * .5),
+            border-color: color transparent transparent transparent
+        },
+        bottomLeft: {
+            border-width: width 0 0 height,
+            border-color: transparent transparent transparent color
+        },
+        left: {
+            border-width: (height * .5) width (height * .5) 0,
+            border-color: transparent color transparent transparent
+        },
+        topLeft: {
+            border-width: height width 0 0,
+            border-color: color transparent transparent transparent
+        }
+    }
+    styles = directions[direction]
+    {styles}
+    
+sqrt(x)
+    if x == 0
+        result = 0
+    else
+        result = 4
+    for i in (0..10)
+        result = ((result + (x / result)) / 2)
+        
+radToDeg($rad)
+    return $rad*180/PI
+    
+summ($list1, $list4)
+    $list3 = 0
+    $list2 = clone($list4)
+    $list2current = 0
+    for v, i in $list2
+        if v == n
+            $list2[i] = $list2current
+        else
+            $list2current = $list2[i]
+    for v, i in $list1
+        if $list1[i] !=n && $list2[i]
+            $list3[i] = $list1[i] + $list2[i]
+        else
+            $list3[i] = n
+    return $list3
+
+neg($list)
+    $list1 = clone($list)
+    for v, i in $list
+        if $list[i] != n
+            $list1[i] = -($list[i])
+        else
+            $list1[i] = n
+    return $list1
+
+add($list, $value)
+    $list1 = clone($list)
+    for v, i in $list
+        if $list[i] != n
+            $list1[i] = $list[i] + $value
+        else
+            $list1[i] = n
+    return $list1
+
+divide($list, $value)
+    $list1 = clone($list)
+    for v, i in $list
+        if $list[i] != n
+            $list1[i] = $list[i] / $value
+        else
+            $list1[i] = n
+    return $list1
+
+multiply($list, $value)
+    $list1 = clone($list)
+    for v, i in $list
+        if $list[i] != n
+            $list1[i] = $list[i] * $value
+        else
+            $list1[i] = n
+    return $list1
+    
+    
+cross($weight = 3px, $color = white, $width = 10px, $height = $width, $boxWidth = $width, $boxHeight = $height, $radius = 0)
+    width $boxWidth
+    height $boxHeight
+    position relative
+    $angle = unit(radToDeg(math($height/$width, 'atan')), 'deg')
+    block()
+        height $weight
+        border-radius $radius
+        width round(sqrt($width*$width + $height*$height))
+        transform-origin 50% 50%
+        top 50%
+        left 50%
+        background-color $color
+    &::before
+        content ''
+        display block
+        position absolute
+        block()
+        transform translate(-50%, -50%) rotate($angle)
+    &::after
+        content ''
+        display block
+        position absolute
+        block()
+        transform translate(-50%, -50%) rotate(-($angle))
+
+circle($size = 10px, $color = black)
+    size $size
+    background-color $color
+    border-radius 50%
+
+plus($weight = 3px, $color = white, $width = 10px, $height = $width, $padding = 0, $radius = 0, $minus = false)
+    width $width + $padding * 2
+    height $height + $padding * 2
+    position relative
+    block()
+        border-radius $radius
+        transform-origin 50% 50%
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+        background-color $color
+    &::before
+        content ''
+        display block
+        position absolute
+        block()
+        width $width
+        height $weight
+    if !$minus
+        &::after
+            content ''
+            display block
+            position absolute
+            block()
+            width $weight
+            height $height
+
+arrow($weight = 3px, $color = white, $width = 10px, $height = $width, $direction = 'bottom', $paddingX = 0, $paddingY = $paddingX)
+    transform-origin 50% 50%
+    position relative
+    width $width + $paddingX * 2
+    height $height + $paddingY * 2
+    &::before, &::after
+        content ''
+        display block
+        position absolute
+        background-color $color
+    if $direction == 'top'
+        $angle = unit(radToDeg(math(2*$height/$width, 'atan')), 'deg')
+        &::before
+            width round(sqrt($width*$width/4 + $height*$height))
+            transform-origin 100% 0
+            top $paddingY
+            height $weight
+            right 50%
+            transform rotate(-($angle))
+        &::after
+            width round(sqrt($width*$width/4 + $height*$height))
+            transform-origin 0 0
+            top $paddingY
+            height $weight
+            left 50%
+            transform rotate($angle)
+    else if $direction == 'left'
+        $angle = unit(radToDeg(math(2*$width/$height, 'atan')), 'deg')
+        &::before
+            height round(sqrt($height*$height/4 + $width*$width))
+            width $weight
+            transform-origin 0 100%
+            left $paddingX
+            bottom 50%
+            transform rotate($angle)
+        &::after
+            height round(sqrt($height*$height/4 + $width*$width))
+            width $weight
+            transform-origin 0 0
+            left $paddingX
+            top 50%
+            transform rotate(-($angle))
+
+burger($weight = 3px, $gap = 4px, $color = black, $width = 20px, $paddingX = 0, $paddingY = $paddingX, $bar = '-bar')
+    width $width + $paddingX * 2
+    padding $paddingY $paddingX
+    &{$bar}
+        background-color $color
+        height $weight
+        margin-bottom $gap
+        &:last-child
+            margin-bottom 0
+
+set($prop, $list1, $startFrom = 0)
+    $list = $list1
+    if length($list) <= length($scale-names)
+        if $list[$startFrom] == n
+            $last = 0
+            for v, i in $list
+                if i < $startFrom && v != n
+                    $last = v
+            $list[$startFrom] = $last
+        for v, i in $list
+            if v != n && i >= $startFrom
+                if i == 0
+                    {$prop}: v;
+                else
+                    +above($scale-names[i])
+                        {$prop}: v;
+
+list($val)
+    $list = $val $val
+    for v, i in $scale-names
+        $list[i] = $val
+    return $list
+
+rect($ratio = 1, $inner = '__inner')
+    position relative
+    &::after
+        content ''
+        display block
+        padding-top (100% / $ratio)
+    if $inner != n
+        &{$inner}
+            position absolute
+            pos 0 0 0 0
+
+corner($color = #fff, $height = 30px, $dir = 'both', $radius = 3px, $inner = '-inner')
+    $size = sqrt($height * $height / 2)
+    if $dir == 'left' || $dir == 'both'
+        if $dir != 'both'
+            border-top-right-radius $radius
+            border-bottom-right-radius $radius
+        &::before
+            content ''
+            display block
+            position absolute
+            background-color $color
+            size $size
+            border-top-left-radius $radius
+            transform-origin 0 0
+            top 50%
+            left - ($height / 2)
+            transform rotate(-45deg)
+    if $dir == 'right' || $dir == 'both'
+        if $dir != 'both'
+            border-top-left-radius $radius
+            border-bottom-left-radius $radius
+        &::after
+            content ''
+            display block
+            position absolute
+            background-color $color
+            size $size
+            border-top-right-radius $radius
+            transform-origin 100% 0
+            top 50%
+            right - ($height / 2)
+            transform rotate(45deg)
+    &{$inner}
+        background-color $color
+        border-radius $radius
+        position relative
+        z-index 1
+
+long-shadow(colorfondo = #000, lenght = 100, type = "box", fadeout = false, angle = 45) {
+    shadow = ''
+    px     = "px " 
+    px0    = "px 0 "
+    angleRatio = (90 - angle) / angle
+    if (lightness(colorfondo) > 5%) {
+        color = rgb(lightness(colorfondo, (lightness(colorfondo) - 5%)))
+    } else {
+        color = #0
+    }
+    if (!fadeout) {
+        for i in (1..lenght) {
+            shadow = shadow + round(i * angleRatio) + px + i + px0 + color
+            if (i < lenght) { shadow = shadow + ", " }
+        }
+    }
+    if (fadeout) {
+        for i in (1..lenght) {
+            b = 1 - i / lenght
+            shadow = shadow + round(i * angleRatio) + px + i + px0 + rgba(color, b)
+            if (i < lenght) { shadow = shadow + ", " }  
+        }
+    }
+    if type == "text" { text-shadow unquote(shadow) }
+    if type == "box"  { box-shadow  unquote(shadow) }
+}
+
+h()
+    margin 0
+    font-weight inherit
+    font-size inherit
+
+margin-after()
+    position relative
+    &::after
+        content ''
+        display block
+        margin-top  40px
+        +above(sm)
+            margin-top  50px
+        +above(md)
+            margin-top  70px
+        +above(xl)
+            margin-top  105px
+
+right-border-magenta()
+    +above(sm)
+        content ''
+        display block
+        position absolute
+        z-index -1
+        right 0px
+        top -55px
+        bottom 0px
+        width 10px
+        background $magenta
+    +above(lg)
+        width 15px
+        top -75px
+    +above(xl)
+        width 20px
+        top -95px
