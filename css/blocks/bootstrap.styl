@@ -36,22 +36,6 @@ for $name, $i in rupture.scale-names
     set('padding-x', divide($horizontalPadding, 2))
 
 bootstrap-cols($name)
-    .col-{$name}-1,
-    .col-{$name}-2,
-    .col-{$name}-3,
-    .col-{$name}-4,
-    .col-{$name}-5,
-    .col-{$name}-6,
-    .col-{$name}-7,
-    .col-{$name}-8,
-    .col-{$name}-9,
-    .col-{$name}-10,
-    .col-{$name}-11,
-    .col-{$name}-12,
-    .col-{$name}
-        min-height 1px
-        set('padding-x', divide($horizontalPadding, 2))
-        
     .col-{$name}-1
         width 8.33333%
     .col-{$name}-2
@@ -137,3 +121,18 @@ for $name, $i in rupture.scale-names
     else
         +above($name)
             bootstrap-cols($name)
+        .col-{$name}-1,
+        .col-{$name}-2,
+        .col-{$name}-3,
+        .col-{$name}-4,
+        .col-{$name}-5,
+        .col-{$name}-6,
+        .col-{$name}-7,
+        .col-{$name}-8,
+        .col-{$name}-9,
+        .col-{$name}-10,
+        .col-{$name}-11,
+        .col-{$name}-12,
+        .col-{$name}
+            min-height 1px
+            set('padding-x', divide($horizontalPadding, 2))
