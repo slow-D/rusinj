@@ -30,6 +30,7 @@ const watch = require('gulp-watch');
 const gulpif = require('gulp-if');
 const gcmq = require('gulp-group-css-media-queries');
 const jsImport = require('gulp-js-import');
+const fileinclude = require('gulp-file-include');
 
 const watchOpts = {events: ['add', 'change', 'unlink']};
 
@@ -44,6 +45,9 @@ const cssSpritesDir = `${cssDir}/sprites/`;
 
 const jsDir = 'js/';
 const jsBuildDir = `${jsDir}build/`;
+
+const htmlDir = 'html/';
+const htmlBuildDir = `${htmlDir}build/`;
 
 const spriteDir = `${assetsDir}sprites/`;
 
@@ -74,6 +78,10 @@ gulp.task('build-sprites', function() {
     });
 });
 
+gulp.task('build-html', function() {
+    combineHtml();
+});
+
 gulp.task('default', function () {
     del.sync([
         `${destBuildDir}/**/*`,
@@ -88,7 +96,8 @@ gulp.task('default', function () {
                 });
             });
         }),
-        combineJs()
+        combineJs(),
+        combineHtml()
     ]).then(() => {
         log('build complete');
 
@@ -105,7 +114,7 @@ gulp.task('default', function () {
             log('watching');
 
             watch([`${spriteDir}**/*.png`, `${spriteDir}**/*.svg`], {read: 0, awaitWriteFinish: true}, function(file) {
-                log('sprite updated', colors.cyanBright(file.path));
+                log('sprite updated', colors.cyanBright(file.relative));
                 let sprite = path.basename(path.dirname(file.path));
                 createSprite(sprite).then(() => {
                     if (SERVER) server.notify.apply(server, [file]);
@@ -113,15 +122,22 @@ gulp.task('default', function () {
             });
 
             watch([`${cssDir}**/*.styl`], {read: 0, awaitWriteFinish: true}, function(file) {
-                log('css updated', colors.blueBright(file.path));
+                log('css updated', colors.blueBright(file.relative));
                 combineStylus(file).then(() => {
                     if (SERVER) server.notify.apply(server, [file]);
                 });
             });
 
             watch([`${jsDir}**/*.js`], {read: 0, awaitWriteFinish: true}, function(file) {
-                log('js updated', colors.yellowBright(file.path));
+                log('js updated', colors.yellowBright(file.relative));
                 combineJs(file).then(() => {
+                    if (SERVER) server.notify.apply(server, [file]);
+                });
+            });
+
+            watch([`${htmlDir}**/*.html`], {read: 0, awaitWriteFinish: true}, function(file) {
+                log('html updated', colors.magentaBright(file.relative));
+                combineHtml(file).then(() => {
                     if (SERVER) server.notify.apply(server, [file]);
                 });
             });
@@ -134,7 +150,7 @@ gulp.task('default', function () {
 function combineStylus(changedFile = null) {
     return Promise.all(getFilesList(cssBuildDir, changedFile).map(file => {
         return new Promise(resolve => {
-            gulp.src(`${file}`)
+            gulp.src(file)
                 .pipe(plumber({
                     errorHandler: function (error) {
                         log(colors.red(error));
@@ -175,7 +191,7 @@ function combineStylus(changedFile = null) {
 function combineJs(changedFile = null) {
     return Promise.all(getFilesList(jsBuildDir, changedFile).map(file => {
         return new Promise(resolve => {
-            gulp.src(`${file}`)
+            gulp.src(file)
                 .pipe(plumber({
                     errorHandler: function (error) {
                         log(colors.red(error));
@@ -194,7 +210,7 @@ function combineJs(changedFile = null) {
                 .pipe(gulp.dest(destBuildDir))
                 .on('end', () => {
                     if (DEV) {
-                        log('combined css for', file);
+                        log('combined js for', file);
                         resolve();
                     }
                 })
@@ -314,6 +330,30 @@ function createSprites() {
     });
 }
 
+function combineHtml(changedFile = null) {
+    return Promise.all(getFilesList(htmlBuildDir, changedFile).map(file => {
+        return new Promise(resolve => {
+            gulp.src(file)
+                .pipe(plumber({
+                    errorHandler: function (error) {
+                        log(colors.red(error));
+                        this.emit('end');
+                    }
+                }))
+                .pipe(fileinclude({
+                    prefix: '@@'
+                }))
+                .pipe(gulp.dest('./'))
+                .on('end', () => {
+                    log('combined html for ', file);
+                    resolve();
+                });
+        });
+    })).then(() => {
+        log(colors.green('html combined'));
+    });
+}
+
 
 function getDirs(srcpath) {
     return fs.readdirSync(srcpath).filter(file => fs.statSync(path.join(srcpath, file)).isDirectory());
@@ -338,12 +378,15 @@ function getFilesList(dir, changedFile = null) {
     let filesList = [];
     if (changedFile) {
         if (isBuildFile(changedFile, dir)) {
-            filesList.push(changedFile.path);
+            filesList.push(`${dir}${changedFile.basename}`);
         } else {
-            let baseName = path.basename(changedFile.path);
-            let fileRegex = baseName.replace(/\./g, '\\.');
+            let fileRegex = changedFile.relative
+                .replace(/\\/g, '/')
+                .replace(/\//g, '\\/')
+                .replace(/\\\\/g, '\\')
+                .replace(/\./g, '\\.');
             getFiles(dir).map(file => {
-                let re = new RegExp(`^(?:@require|@import)\\s+(?:'|").*?\\/${fileRegex}(?:'|");?$`, 'g');
+                let re = new RegExp(`^.*?(?:@require|@import|@@include)\s*(?:'|")?.*?${fileRegex}(?:'|")?.*?$`, 'g');
                 var lines = fs.readFileSync(`${dir}${file}`).toString().split(getNewLineChar());
                 for (let i in lines) {
                     if (!lines.hasOwnProperty(i)) {
