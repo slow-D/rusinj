@@ -341,7 +341,11 @@ function getFilesList(dir, changedFile = null) {
             filesList.push(changedFile.path);
         } else {
             let baseName = path.basename(changedFile.path);
-            let fileRegex = baseName.replace(/\./g, '\\.');
+            let fileRegex = changedFile.relative
+                .replace(/\\/g, '/')
+                .replace(/\//g, '\\/')
+                .replace(/\\\\/g, '\\')
+                .replace(/\./g, '\\.');
             getFiles(dir).map(file => {
                 let re = new RegExp(`^(?:@require|@import)\\s+(?:'|").*?\\/${fileRegex}(?:'|");?$`, 'g');
                 var lines = fs.readFileSync(`${dir}${file}`).toString().split(getNewLineChar());
