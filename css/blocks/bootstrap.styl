@@ -36,84 +36,17 @@ for $name, $i in rupture.scale-names
     set('padding-x', divide($horizontalPadding, 2))
 
 bootstrap-cols($name)
-    .col-{$name}-1
-        width 8.33333%
-    .col-{$name}-2
-        width 16.66666%
-    .col-{$name}-3
-        width 25%
-    .col-{$name}-4
-        width 33.33333%
-    .col-{$name}-5
-        width 41.66666%
-    .col-{$name}-6
-        width 50%
-    .col-{$name}-7
-        width 58.33333%
-    .col-{$name}-8
-        width 66.66666%
-    .col-{$name}-9
-        width 75%
-    .col-{$name}-10
-        width 83.33333%
-    .col-{$name}-11
-        width 91.66666%
-    .col-{$name}-12
-        width 100%
+    for num in (1..12)
+        .col-{$name}-{num}
+            width unit(100/12*num, '%')
+        .offset-{$name}-{num}
+            margin-left unit(100/12*num, '%')
+        .order-{$name}-{num}
+            order num
+    .col-{$name}-2_4
+        width unit(100/12*2.4, '%')
     .col-{$name}
         width auto
-        
-    .offset-{$name}-0
-        margin-left 0%
-    .offset-{$name}-1
-        margin-left 8.33333%
-    .offset-{$name}-2
-        margin-left 16.66667%
-    .offset-{$name}-3
-        margin-left 25%
-    .offset-{$name}-4
-        margin-left 33.33333%
-    .offset-{$name}-5
-        margin-left 41.66667%
-    .offset-{$name}-6
-        margin-left 50%
-    .offset-{$name}-7
-        margin-left 58.33333%
-    .offset-{$name}-8
-        margin-left 66.66667%
-    .offset-{$name}-9
-        margin-left 75%
-    .offset-{$name}-10
-        margin-left 83.33333%
-    .offset-{$name}-11
-        margin-left 91.66667%
-    .offset-{$name}-12
-        margin-left 100%
-        
-    .order-{$name}-1
-        order 1
-    .order-{$name}-2
-        order 2
-    .order-{$name}-3
-        order 3
-    .order-{$name}-4
-        order 4
-    .order-{$name}-5
-        order 5
-    .order-{$name}-6
-        order 6
-    .order-{$name}-7
-        order 7
-    .order-{$name}-8
-        order 8
-    .order-{$name}-9
-        order 9
-    .order-{$name}-10
-        order 10
-    .order-{$name}-11
-        order 11
-    .order-{$name}-12
-        order 12
         
 for $name, $i in rupture.scale-names
     if $name == 'xs'
