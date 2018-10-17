@@ -1,5 +1,6 @@
 let DEV = process.argv.includes('--dev');
 let SERVER = process.argv.includes('--server');
+let WATCH = process.argv.includes('--watch');
 let server;
 
 const fs = require('fs');
@@ -7,10 +8,7 @@ const path = require('path')
 const colors = require('ansi-colors');
 const log = require('fancy-log');
 const del = require('del');
-const notifier = require('node-notifier');
 const onExit = require('on-exit');
-const imageminOptipng = require('imagemin-optipng');
-const imageminPngquant = require('imagemin-pngquant');
 
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -18,7 +16,6 @@ const babelMinify = require('gulp-babel-minify');
 const minifyCss = require('gulp-clean-css');
 const stylus = require('gulp-stylus');
 const autoprefixer = require('gulp-autoprefixer');
-const imagemin = require('gulp-imagemin');
 const plumber = require('gulp-plumber');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
@@ -110,7 +107,7 @@ gulp.task('default', function () {
             });
         }
 
-        if (DEV) {
+        if (WATCH) {
             log('watching');
 
             watch([`${spriteDir}**/*.png`, `${spriteDir}**/*.svg`], {read: 0, awaitWriteFinish: true}, function(file) {
