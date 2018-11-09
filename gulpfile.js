@@ -385,6 +385,9 @@ function getFilesList(dir, changedFile = null) {
             getFiles(dir).map(file => {
                 let re = new RegExp(`^.*?(?:@require|@import|@@include|@@loop)\s*(?:'|")?.*?${fileRegex}(?:'|")?.*?$`, 'g');
                 var lines = fs.readFileSync(`${dir}${file}`).toString().split(getNewLineChar());
+                if (lines.length <= 1) {
+                    lines = fs.readFileSync(`${dir}${file}`).toString().split('\n');
+                }
                 for (let i in lines) {
                     if (!lines.hasOwnProperty(i)) {
                         continue;
