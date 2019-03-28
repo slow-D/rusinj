@@ -169,9 +169,13 @@ function combineStylus(changedFile = null) {
                         resolve();
                     }
                 })
-                .pipe(gulpif(!DEV, minifyCss({
-                    compatibility: 'ie8',
-                    advanced: true
+                .pipe(gulpif(!DEV, babelMinify({
+                    removeConsole: true,
+                    removeDebugger: true,
+                    simplify: false,
+                    mangle: {
+                        keepClassName: true
+                    }
                 })))
                 .pipe(gulpif(!DEV, rename({suffix: '.min'})))
                 .pipe(gulpif(!DEV, gulp.dest(destBuildMinDir)))
@@ -212,11 +216,13 @@ function combineJs(changedFile = null) {
                     }
                 })
                 .pipe(gulpif(!DEV, babelMinify({
+                    removeConsole: true,
+                    removeDebugger: true,
+                    simplify: false,
                     mangle: {
                         keepClassName: true
                     }
                 })))
-                .pipe(gulpif(!DEV, rename({suffix: '.min'})))
                 .pipe(gulpif(!DEV, gulp.dest(destBuildMinDir)))
                 .on('end', () => {
                     log('combined js for ', file);
