@@ -210,15 +210,15 @@ function combineJs(changedFile = null) {
                         resolve();
                     }
                 })
-                .pipe(gulpif(!DEV, babelMinify({
+                .pipe(babelMinify({
                     removeConsole: true,
                     removeDebugger: true,
                     simplify: false,
                     mangle: {
                         keepClassName: true
                     }
-                })))
-                .pipe(gulpif(!DEV, gulp.dest(destBuildMinDir)))
+                }))
+                .pipe(gulp.dest(destBuildMinDir))
                 .on('end', () => {
                     log('combined js for ', file);
                     resolve();
