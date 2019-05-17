@@ -169,16 +169,11 @@ function combineStylus(changedFile = null) {
                         resolve();
                     }
                 })
-                .pipe(gulpif(!DEV, babelMinify({
-                    removeConsole: true,
-                    removeDebugger: true,
-                    simplify: false,
-                    mangle: {
-                        keepClassName: true
-                    }
-                })))
-                .pipe(gulpif(!DEV, rename({suffix: '.min'})))
-                .pipe(gulpif(!DEV, gulp.dest(destBuildMinDir)))
+                .pipe(minifyCss({
+                    compatibility: 'ie8',
+                    advanced: true
+                }))
+                .pipe(gulp.dest(destBuildMinDir))
                 .on('end', () => {
                     log('combined css for', file);
                     resolve();
