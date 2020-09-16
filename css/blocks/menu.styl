@@ -1,0 +1,116 @@
+.menu
+	color #fff
+	position absolute
+	top 25px
+	left 25px
+	right: 25px
+	height: calc(100vh - 25px)
+	width: calc(100% - 50px)
+	background-color #3b4255
+	padding-top: 70px
+	padding-left: 265px
+	opacity 0
+	transform translateY(10px)
+	transition .15s cubic
+	pointer-events none
+	z-index 2
+	+below(xs)
+		top 0
+		left 0
+		right 0
+		width 100%
+		min-height 100vh
+		padding-x 15px
+		padding-top 85px
+	&.is-show
+		pointer-events all
+		opacity 1
+		transform none
+	&-wrap
+		display flex
+		+below(xs)
+			flex-flow row wrap
+		&__item
+			width: 21%
+			position relative
+			+below(xs)
+				width 100%
+	&-list
+		font-weight 400
+		padding-right: 50px
+		+below(xs)
+			padding-right 0
+		&:not(:last-of-type)
+			margin-bottom: 70px
+			+below(xs)
+				margin-bottom 0
+		&__item
+			font-size: 18px
+			line-height: 1.3
+			+below(xs)
+				font-size 12px
+			& a
+				transition .15s cubic
+				&:hover
+					color $baseRedColor
+			&:not(:last-of-type)
+				margin-bottom: 25px
+				+below(xs)
+					margin-bottom 15px
+			&-first
+				font-size: 21px
+				text-transform uppercase
+				margin-bottom 25px
+				+below(xs)
+					font-size 14px
+		&_contacts
+			padding-top: 50px
+			&__item
+				transition .15s cubic
+				&:hover
+					color $baseRedColor
+				&:first-of-type
+					margin-bottom: 20px
+
+.menu-flex
+	display flex
+	align-items flex-start
+	justify-content space-between
+
+
+.menu-inner
+	padding-left 20px
+	margin-top 25px
+	display none
+	&_item
+		margin-bottom 20px
+		&:last-child
+			margin-bottom 0
+
+
+.menu-pos
+	&-logo
+		position absolute
+		left 0
+		top 0
+	&-close
+		position absolute
+		right 0
+		top 0
+		height 150px
+		.header__search form
+			display block
+
+
+
+.down-arrow
+	cursor pointer
+	height 12px
+	width 12px
+	margin-left 8px
+	margin-top 5px
+	flex none
+	transform none
+	transition .15s cubic
+	&.rotate
+		transform rotate(180deg)

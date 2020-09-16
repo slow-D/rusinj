@@ -1,23 +1,67 @@
 .modal
-    width 100%
-    max-width 600px
-    display inline-block
-    background-color white
-    overflow hidden
-    position relative
-    cursor default
-    vertical-align middle
-    white-space normal
-    text-align left
-    margin-y 50px
-    box-shadow 0px 0px 20px rgba(#000, 0.5)
-    &_wide
-        +above(sm)
-            max-width 1160px
-    &__close
-        z-index 100
-        cross 1px #c4c4c4 28px 28px 28px 28px
-        position absolute
-        right 10px
-        top 10px
-        cursor pointer
+	background-color #fff
+	cursor default
+	display inline-block
+	overflow auto
+	padding-top: 100px
+	padding-left: 70px
+	padding-right: 80px
+	padding-bottom: 100px
+	position fixed
+	top 0
+	right: 0
+	min-height 100vh
+	height: 100%
+	min-width 650px
+	width: 40%
+	text-align: left
+	white-space normal
+	z-index: 99999
+	+below(sm)
+		min-width 1px
+		width 90%
+		padding 25px
+	&__close
+		z-index: 99999
+		cross 1px #c4c4c4 28px 28px 28px 28px
+		position absolute
+		top 50px
+		right: 40px
+		cursor pointer
+		+below(xs)
+			top 25px
+			right 25px
+			cross 1px #c4c4c4 20px 20px 20px 20px
+			position absolute
+	&__head
+		color #151518
+		font-size: 48px
+		font-weight 400
+		line-height: 1
+		margin-bottom: 50px      
+		text-transform: uppercase
+		+below(xs)
+			font-size 20px
+			margin-bottom 30px
+	&-inputs
+		display flex
+		justify-content space-between
+		+below(xs)
+			flex-direction column
+		input
+			width: 48% !important
+			+below(xs)
+				width 100% !important
+	&-policy
+		display flex
+		align-items center
+		margin-bottom: 65px
+		+below(xs)
+			margin-bottom 40px    
+		p
+			color #151518
+			font-size: 16px
+			font-weight 400         
+			margin-left: 15px
+			+below(xs)
+				font-size 12px

@@ -1,25 +1,37 @@
 .breadcrumbs
     position relative
     z-index 100
-    margin-top 40px
-    &__items
-        list-style none
-        margin 0px
-        padding 0px
+    margin 0px
+    margin-bottom 35px
+    list-style none
+    padding 0px
+    +below(xs)
+        margin-bottom 25px
     &__item
         margin 0px
         padding 0px
-        padding-bottom 5px
-        font-size 14px
+        font-size 12px
+        position relative
         line-height unit(19/@font-size, em)
         display inline-block
         color #c4c4c4
-        margin-right 3px
-        +above(xl)
-            font-size 16px
-            line-height unit(22/@font-size, em)
-    &__link
-        border 0px
-        margin-right 3px
-        &-current
-            color $baseFontColor
+        margin-right 16px
+        &:not(:last-child):after
+            content: '/'
+            position: absolute
+            font-size: inherit
+            font-weight: inherit
+            right: -12px
+
+.row-breadcrumbs
+    display flex
+    align-items center
+    margin-bottom 35px
+    +below(xs)
+        margin-bottom 25px
+    .breadcrumbs
+        margin-bottom 0
+        margin-left 35px
+        +below(xs)
+            margin-left 15px
+        

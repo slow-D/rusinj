@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js">
+<head>
+    @@include('../blocks/head.html', {
+        "title": "Контакты"
+    })
+</head>
+<body>
+    <div class="body">
+        @@include('../blocks/header.html',{
+            "class": "header--inside"
+        })
+
+        <div class="body__content">
+            
+            <div class="contact">
+                
+                <div class="contact-map">
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Aeac4b0fc1fcc2e2788bee64875e452709cbaa7974f35c6709322bbe40a209491&amp;width=100%25&amp;height=700&amp;lang=ru_RU&amp;scroll=true"></script>
+                </div>
+
+                <div class="contact-aside">
+                    
+                    <ul class="breadcrumbs">
+                        <li class="breadcrumbs__item">
+                            <a href="#">Главная</a>
+                        </li>
+                        <li class="breadcrumbs__item">
+                            <a href="#">Проекты</a>
+                        </li>
+                        <li class="breadcrumbs__item">
+                            <a href="#">Завершенные</a>
+                        </li>
+                    </ul>
+
+                    <h1 class="content-title">Контакты</h1>
+
+                    <div class="contact-row">
+                        <a href="#" class="contact-link">
+                            Москва г, Ярцевская ул, дом 34,<br>корпус 1, Э 2 ПОМ I К 7 ОФ 56
+                        </a>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="contact-head">E-mail</div>
+                        <a href="mailto:info@injecttrade.ru" class="contact-link">
+                            info@injecttrade.ru
+                        </a>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="contact-head">Телефон</div>
+                        <a href="tel:+7 (495) 998-70-40" class="contact-link">
+                            +7 (495) 998-70-40
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        @@include("../blocks/footer.html")
+        @@include("../blocks/menu.html")
+    </div>
+
+    @@include("../blocks/append.html")
+</body>
+</html>

@@ -1,0 +1,195 @@
+.header
+	position: absolute
+	top: 25px
+	left: 25px
+	background-color: transparent
+	display: flex
+	justify-content space-between
+	width: calc(100% - 50px)
+	z-index: 1
+	+below(xs)
+		top 0
+		left 0
+		width 100%
+	+below(sm)
+		top 10px
+		left 10px
+		width calc(100% - 20px)
+	&__logo
+		background-color: #FFF
+		height 150px
+		width 170px
+		padding 30px
+		+below(xs)
+			height 60px
+			width 75px
+			padding 10px
+		+below(sm)
+			height 100px
+			width 110px
+			padding 20px
+	&__link
+		align-self center
+		margin-right: 75px
+		+below(xs)
+			margin-right 40px
+			font-size 12px
+	&__search
+		position relative
+		cursor: pointer
+		color #fff
+		align-self center
+		display flex
+		align-items center
+		margin-right: 40px
+		transition color .15s cubic
+		+below(xs)
+			margin-right 30px
+		&:hover
+			color $baseRedColor
+		&:focus form
+			display flex
+		form
+			color #151518
+			display none
+			position absolute
+			right: 0
+			top 0
+			input
+				border-radius 20px
+				font-size: 16px
+				font-weight 400
+				border 0px
+				padding 5px
+				padding-left: 40px
+				width: 235px
+				&:focus
+					outline 0
+			.icon
+				position absolute
+				height: 15px
+				width: 15px
+				top 50%
+				left 10px
+				transform translateY(-50%)
+		.icon
+			height: 20px
+			width: 20px
+	&-link
+		display flex
+		align-items center
+	&-nav
+		display flex 
+		margin-left: 60px
+		+below(sm)
+			display none
+		&__item
+			color #fff
+			font-size: 18px
+			font-weight: 400
+			position relative
+			transition .15s cubic
+			padding 15px 0
+			+below(1281px)
+				font-size 16px
+			&:hover
+				color $baseRedColor
+			&:not(:last-of-type)
+				margin-right: 55px
+				+below(1281px)
+					margin-right 35px
+		&-inside
+			position absolute
+			top 50px
+			left -30px
+			white-space nowrap
+			box-shadow: 0px 7px 32px 0px rgba(0, 0, 0, 0.1)
+			display none
+			&__item
+				background-color #fff
+				color #151518
+				font-size: 16px
+				font-weight 400
+				padding 25px 30px
+				padding-right: 70px
+				position relative
+				transition .3s ease-out
+				&:hover
+					color #fff
+					background-color #3b4255
+		&-insider
+			position absolute
+			display none
+	&-menu
+		display flex
+	&--inside
+		position relative
+		background-color #808081
+		top 0
+		left 0
+		width 100%
+
+
+.menu-btn
+	cursor: pointer
+	background-color: $baseRedColor
+	height: 100px
+	width: 100px
+	position relative
+	+below(xs)
+		height 60px
+		width 65px
+	// padding 30px
+	&__line
+		background-color #fff
+		display: inline-block
+		position absolute
+		left 50%
+		height: 3px
+		width: 40px
+		transform translateX(-50%)
+		transform-origin 50%
+		transition .15s cubic
+		+below(xs)
+			width 30px
+		&-top
+			top 34px
+			+below(xs)
+				top 20px
+		&-middle
+			top 50%
+			transform translateX(-50%) translateY(-50%)
+		&-bottom
+			top: 63px
+			+below(xs)
+				top 37px
+	&.is-close
+		.menu-btn__line-top
+			top 50%
+			transform translate(-50%, -50%) rotate(45deg)
+		.menu-btn__line-middle
+			width 0
+		.menu-btn__line-bottom
+			top 50%
+			transform translate(-50%, -50%) rotate(-45deg)
+
+.link
+	color #fff
+	font-size: 18px
+	font-weight: 400
+	position relative
+	+below(sm)
+		font-size 14px
+	&:after
+		background-color $baseRedColor
+		content ''
+		height: 2px
+		width: 100%
+		display inline-block
+		position absolute
+		left: 0
+		bottom: -7px
+		transition width .15s cubic
+	&:hover:after
+		width: 0
+		

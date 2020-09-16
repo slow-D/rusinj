@@ -1,0 +1,53 @@
+.hero
+	background-color: #808081
+	position relative
+	height: 800px
+	+below(xs)
+		height 420px
+	+below(sm)
+		height 620px
+	&-slider
+		position relative
+		height: 100%
+		overflow hidden
+	&-slide
+		position relative
+		padding-top: 260px
+		height: 100%
+		+below(xs)
+			padding-top 170px
+		+below(sm)
+			padding-top 200px
+	&__head
+		color #fff
+		font-size: 48px
+		font-weight 400
+		margin-bottom: 50px
+		text-transform uppercase
+		+below(xs)
+			font-size 20px
+		+below(sm)
+			font-size 32px
+	&-nav
+		position absolute
+		top: calc(100% - 140px)
+		right: 14%
+		z-index: 1
+		+below(xs)
+			right 15px
+			top calc(100% - 45px)
+		+below(sm)
+			right 1%
+			top: calc(100% - 100px)
+		+below(1281px)
+			right 5%
+		&__num
+			min-width 60px
+			+below(xs)
+				min-width 1px
+		&_wrap
+			margin-right: 50px
+			+below(xs)
+				margin-right 25px
+			+below(sm)
+				margin-right 30px

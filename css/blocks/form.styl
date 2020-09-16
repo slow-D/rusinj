@@ -38,6 +38,12 @@
 		align-items flex-start
 	&__field-wrapper
 		flex 1 1 auto
+
+.error
+	font-size 14px
+	color #f00
+	margin-top 5px
+
 		
 input:not([type]),
 input[type="email"],
@@ -48,25 +54,53 @@ input[type="url"],
 input[type="text"],
 textarea,
 select
-	padding 10px 20px
+	color #151518
+	width: 100%
+	padding 13px 16px
 	display block
-	border 1px solid #C4C4C4
+	border 1px solid #e7e8e9
 	background-color #fff
-	color $baseFontColor
-	line-height 1.25em
+	line-height 1
+	font-size: 18px
+	font-weight 400
 	outline none
+	margin-bottom: 30px
+	+below(xs)
+		margin-bottom 20px
 	&:focus
 		border-color darken(#C4C4C4, 25%)
+	+below(xs)
+		font-size 12px
+
 textarea
-	min-height 150px
-	
-.button
-	display inline-block
+	min-height 100px
+	resize none
+
+
+.input-check
 	cursor pointer
-	padding 10px 20px
-	text-decoration none
-		
-.error
-	font-size 14px
-	color #f00
-	margin-top 5px
+	width:40px
+	height:20px
+	-moz-appearance:none
+	-webkit-appearance:none
+	background-color:#c3c3c3
+	border-radius:20px
+	box-shadow:inset -2px 2px 5px rgba(0,0,0,0.2)
+	transition:.5s ease
+	&:before
+		content ''
+		display:block
+		background-color:#fff
+		width:20px
+		height:20px
+		border-radius:50%
+		transform:scale(0.9)
+		box-shadow:-2px 2px 5px rgba(0,0,0,0.2)
+		transition:.5s ease
+	&:checked
+		background-color: #3b4255
+		&:before
+			transform:scale(0.9) translate(110%);
+			box-shadow:2px 2px 4px rgba(0,0,0,0.2), -3px 2px 4px rgba(0,0,0,0.2);
+	&:focus
+		outline 0

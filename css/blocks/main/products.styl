@@ -1,0 +1,109 @@
+.products
+	background-color: #fff
+	display flex
+	&-content
+		background-color: #FFF
+		height: 100%
+		position relative
+		top: -140px
+		width: 68%
+		padding-top: 90px
+		padding-bottom: 80px
+		padding-right: 100px
+		+below(xs)
+			top 0
+			width 100%
+			padding-right 15px
+			padding-top 30px
+			padding-bottom 45px
+		+below(sm)
+			top -100px
+			padding-top 50px
+			padding-right 25px
+		+below(1281px)
+			padding-right 50px
+	&-slide
+		margin-bottom: 70px
+		display none
+		+below(xs)
+			margin-bottom 0
+		&.active
+			display block
+		&__head
+			display flex
+			justify-content space-between
+			align-items: flex-start
+			margin-bottom: 60px
+			+below(xs)
+				margin-bottom 25px
+			.content-title
+				width: 60%
+		&_items
+			display flex
+			justify-content space-between
+			margin-bottom 50px
+			&:last-child
+				margin-bottom 0
+			+below(xs)
+				display block
+		&__item
+			color #545358
+			width: 22%
+			font-size: 18px
+			font-weight 400
+			border 1px solid transparent
+			transition border-color .15s cubic
+			+below(xs)
+				width 100%
+				font-size 12px
+				border-color #e8e9ea
+			+below(sm)
+				font-size 14px
+			&:hover
+				border-color #e8e9ea
+				& .products-slide__item_content
+					padding-left 20px
+				& .btn
+					opacity 1
+			.btn
+				opacity 0
+				width: 100%
+				+below(xs)
+					opacity 1
+				+below(sm)
+					opacity 1
+			&_content
+				padding-right: 20px
+				transition padding-left .1s cubic
+				+below(xs)
+					padding-left 20px
+			&_head
+				text-transform uppercase
+				margin-top 1.944em
+			&_desc
+				height: 70px
+				margin-bottom: 2.222em
+				+below(xs)
+					height: auto
+					min-height 45px
+			&_weight
+				color #151518
+				margin-bottom: 3.056em
+	&-nav
+		padding-bottom: 270px
+		padding-left: 80px
+		& .btn
+			padding-x 75px
+			+below(sm)
+				padding-x 1.429em
+		+below(xs)
+			display none
+		+below(sm)
+			padding-left 20px
+			padding-bottom 0
+		+below(1281px)
+			padding-left 50px
+	&-pagination
+		&__item
+			align-items center
+		

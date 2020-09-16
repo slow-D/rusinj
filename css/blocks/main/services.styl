@@ -1,0 +1,73 @@
+.services
+	// height: 1060px
+	display flex
+	&-slide
+		display none
+		&.active
+			display block
+	&-nav
+		width: 33%
+		padding-right: 90px
+		+below(xs)
+			display none
+		+below(sm)
+			padding-right 20px
+	&-content
+		width: 67%
+		padding-top: 90px
+		padding-left: 140px
+		padding-right: 110px
+		padding-bottom: 110px
+		+below(xs)
+			width 100%
+			padding-top 30px
+			padding-left 15px
+			padding-right 15px
+			padding-bottom 45px
+		+below(sm)
+			padding-left 30px
+			padding-top 40px
+			padding-right 25px
+		+below(1281px)
+			padding-left 50px
+		.content-title
+			margin-bottom: 60px
+			+below(xs)
+				margin-bottom 35px
+	&-list
+		list-style none
+		margin 0
+		margin-bottom: 80px
+		+below(xs)
+			margin-bottom 40px
+		&__item
+			color #406ebd
+			margin 0
+			line-height: 1
+			font-size: 21px
+			font-weight 400
+			+below(xs)
+				font-size 12px
+			+below(sm)
+				font-size 14px
+			+below(1281px)
+				font-size 18px
+			&:before
+				content '—'
+				margin-right: 5px
+			&:not(:last-of-type)
+				margin-bottom: 2.143em
+	&-btn
+		display flex
+		margin-bottom: 75px
+		+below(xs)
+			flex-direction column
+			margin-bottom 0
+		.btn:first-child
+			margin-right: 25px
+			+below(xs)
+				margin-right 0
+				margin-bottom 20px
+	&-pagination
+		&_next
+			text-align right

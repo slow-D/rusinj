@@ -2,24 +2,173 @@
 <html lang="ru" class="no-js">
 <head>
     @@include('../blocks/head.html', {
-        "title": "Свадьба Car - главная страница"
+        "title": "РУСИНЖЕКТ"
     })
-
-    <link rel="preload" href="/assets/build/index.css" as="style" onload="this.onload=null;this.rel='stylesheet';">
-    <noscript><link rel="stylesheet" href="/assets/build/index.css"></noscript>
 </head>
 <body>
     <div class="body">
         @@include('../blocks/header.html')
 
         <div class="body__content">
+            
+            <div class="hero">
+
+                <div class="hero-slider owl-carousel">
+                    <div class="hero-slide pad-l">
+                        <div class="hero__head">
+                            <span class="bold">Скидка</span><br>
+                            при заказе больших партий
+                        </div>
+                        <button class="btn">Заказать</button>
+                    </div>
+
+                    <div class="hero-slide pad-l">
+                        <div class="hero__head">
+                            <span class="bold">Скидка 2</span><br>
+                            при заказе больших партий
+                        </div>
+                        <button class="btn">Заказать</button>
+                    </div>
+                </div>
+
+
+                <div class="hero-nav slider-nav">
+                    <div class="hero-nav_wrap slider-nav_wrap"></div>
+                    <div class="hero-nav__num slider-nav__num"></div>
+                </div>
+
+            </div>
+
+
+
+            <div class="products">
+                <div class="products-content pad-l">
+                    <div class="products__head content-head">Продукция</div>
+
+                    @@include('../blocks/products-slider.html')
+                    
+                    <div class="slider-pagination products-pagination">
+                        <div class="slider-pagination__item slider-pagination_prev products-pagination__item products-pagination_prev">
+                            <svg class="icon icon-sample prev">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                            <span>Вспомогательные материалы</span>
+                        </div>
+                        <div class="slider-pagination__item slider-pagination_next products-pagination__item products-pagination_next">
+                            <span>Полиуретаны</span>
+                            <svg class="icon icon-sample">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="products-nav aside-nav">
+                    <nav class="products-nav_wrap aside-nav_wrap">
+                        <a class="aside-nav__item active" href="#" data-prod-tab="1"><span>Инъекционные материалы</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="2"><span>Полиуретаны</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="3"><span>Акрилаты</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="4"><span>Эпоксиды</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="5"><span>Кремнийорганика</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="6"><span>Тампонажные растворы</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="7"><span>Сухие смеси</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="8"><span>Микроцемент</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="9"><span>Добавки</span></a>
+                        <a class="aside-nav__item" href="#" data-prod-tab="10"><span>Вспомогательные материалы</span></a>
+                    </nav>
+                    <a href="products.html" class="btn">В каталог</a>
+                </div>
+            </div>
+
+
+
+            <div class="projects">
+                <div class="projects-slider owl-carousel">
+                    <div class="projects-slider__item pad-l" style="background-image: url('/assets/images/main/projects/item.jpg')">
+                        <div class="projects-slider__head">Проект</div>
+                        <div class="projects-slider__title">
+                            Противоаварийные мероприятия в&nbsp;процессе строительства
+                        </div>
+                        <a href="projects-single.html" class="projects-slider__link">
+                            Подробнее
+                            <svg class="icon icon-sample">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="projects-slider__item pad-l" style="background-image: url('/assets/images/main/projects/item.jpg')">
+                        <div class="projects-slider__head">Проект</div>
+                        <div class="projects-slider__title">
+                            Противоаварийные мероприятия в&nbsp;процессе строительства
+                        </div>
+                        <a href="projects-single.html" class="projects-slider__link">
+                            Подробнее
+                            <svg class="icon icon-sample">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="projects-slider__item pad-l" style="background-image: url('/assets/images/main/projects/item.jpg')">
+                        <div class="projects-slider__head">Проект</div>
+                        <div class="projects-slider__title">
+                            Противоаварийные мероприятия в&nbsp;процессе строительства
+                        </div>
+                        <a href="projects-single.html" class="projects-slider__link">
+                            Подробнее
+                            <svg class="icon icon-sample">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="projects-nav slider-nav">
+                    <div class="projects-nav__num slider-nav__num"></div>
+                    <div class="projects-nav_wrap slider-nav_wrap"></div>
+                </div>
+            </div>
+
+            <div class="services">
+                <div class="services-nav aside-nav pad-l">
+                    <nav class="services-nav_wrap aside-nav_wrap">
+                        <a class="aside-nav__item active" href="#" data-proj-tab="1"><span>Подготовительные работы</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="2"><span>Гидроизоляционные работы</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="3"><span>Геоцементационные технологии</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="4"><span>Усиление строительных конструкций</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="5"><span>Инъекционные работы</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="6"><span>Противоаварийные мероприятия в процессе строительства</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="7"><span>Реставрационно-инъекционные работы</span></a>
+                        <a class="aside-nav__item" href="#" data-proj-tab="8"><span>Работы по бурению</span></a>
+                    </nav>
+                    <a href="uslugi-2.html" class="btn">Все услуги</a>
+                </div>
+                <div class="services-content">
+                    <div class="content-head">Услуги</div>
+                    @@include("../blocks/services-slider.html")
+                    <div class="slider-pagination services-pagination">
+                        <div class="slider-pagination__item slider-pagination_prev services-pagination__item services-pagination_prev">
+                            <svg class="icon icon-sample prev">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                            <span>Работы по бурению</span>
+                        </div>
+                        <div class="slider-pagination__item slider-pagination_next services-pagination__item services-pagination_next">
+                            <span>Гидроизоляционные работы</span>
+                            <svg class="icon icon-sample">
+                                <use xlink:href="/assets/build/sprites/global.svg#icon-arrow" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>  
+            </div>
 
         </div>
 
         @@include("../blocks/footer.html")
+        @@include("../blocks/menu.html")
     </div>
 
     @@include("../blocks/append.html")
-    <script src="/assets/build/index.js"></script>
 </body>
 </html>

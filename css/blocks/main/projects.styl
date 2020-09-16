@@ -1,0 +1,100 @@
+.projects
+	height: 610px
+	width: 90%
+	position relative
+	// top: -190px
+	margin-top -190px
+	+below(xs)
+		height 420px
+		margin-top 0
+		width 100%
+	+below(sm)
+		margin-top 0
+		width 100%
+		height 510px
+	&-nav
+		position absolute
+		top 40px
+		right: -70px
+		z-index: 1
+		+below(xs)
+			right 15px
+			top calc(100% - 45px)
+		+below(sm)
+			right 20px
+		&_wrap
+			position relative
+			margin-left: 50px
+			+below(xs)
+				margin-left 25px
+			+below(sm)
+				margin-left 30px
+	&-slider
+		position relative
+		height: 100%
+		&__item
+			position relative
+			background-repeat no-repeat
+			background-position: top
+			background-size: cover
+			display flex 
+			flex-direction column
+			align-items: flex-start
+			justify-content: center	
+			height: 100%
+			text-transform uppercase
+			&:before
+				content ''
+				position absolute
+				background-color rgba(0, 0, 0, .4)
+				height: 100%
+				width: 100%
+				top 0
+				left 0
+		&__head
+			position relative
+			color #9d9ea2
+			font-size: 21px
+			font-weight 600
+			margin-bottom 1.429em
+			+below(xs)
+				font-size 12px
+			+below(sm)
+				font-size 16px
+		&__title
+			color #fff
+			font-size: 48px
+			font-weight 400
+			position relative
+			left -.05em
+			width: 80%
+			margin-bottom: 2.292em
+			+below(xs)
+				font-size 20px
+			+below(sm)
+				font-size 28px
+			+below(1281px)
+				font-size 40px
+		&__link
+			position relative
+			color $baseRedColor
+			font-size: 21px
+			font-weight 700
+			letter-spacing 5px
+			line-height: 1
+			display flex
+			align-items center
+			transition color .15s cubic
+			+below(xs)
+				font-size 12px
+				letter-spacing 2px
+			+below(1281px)
+				font-size 16px
+			+below(sm)
+				font-size 14px
+			&:hover
+				color #fff
+			.icon
+				margin-left: 20px
+				width: 30px
+				height: 30px
